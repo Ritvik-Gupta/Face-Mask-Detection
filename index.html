@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>User Media</title>
+	</head>
+	<body>
+		<video playsinline autoplay></video>
+		<br />
+		<canvas id="media-stream"></canvas>
+
+		<script>
+			const video = document.querySelector("video")
+			const mediaCanvas = document.querySelector("#media-stream")
+			const ctx = mediaCanvas.getContext("2d")
+
+			async function main() {
+				const stream = await navigator.mediaDevices.getUserMedia({
+					video: { width: 500, height: 500 },
+				})
+				video.srcObject = stream
+
+				mediaCanvas.width = 500
+				mediaCanvas.height = 500
+
+				setInterval(() => {
+					ctx.drawImage(video, 0, 0)
+
+					let imageData = ctx.getImageData(0, 0, 500, 500)
+					console.log(imageData)
+				}, 500)
+			}
+
+			main()
+		</script>
+	</body>
+</html>

@@ -1,0 +1,11 @@
+# Python virtual environments
+/.venv
+/.vscode
+/__pycache__
+/dataset
+/incep_v3_mask_model
+/Logo
+/protos
+/ResNet50_v2
+/Readme_images
+
